@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hightouch Events test page</title>
+
+    <!-- Hightouch Events Browser SDK -->
+    <script type="text/javascript">
+      !function(){var e=window.htevents=window.htevents||[];if(!e.initialize)if(e.invoked)window.console&&console.error&&console.error("Hightouch snippet included twice.");else{e.invoked=!0,e.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"],e.factory=function(t){return function(){var n=Array.prototype.slice.call(arguments);return n.unshift(t),e.push(n),e}};for(var t=0;t<e.methods.length;t++){var n=e.methods[t];e[n]=e.factory(n)}e.load=function(t,n){var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src="https://cdn.hightouch-events.com/browser/release/v1-latest/events.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(o,r),e._loadOptions=n,e._writeKey=t},e.SNIPPET_VERSION="0.0.1",
+      e.load("WRITE_KEY", { apiHost: "us-east-1.hightouch-events.com" }),
+      e.page()}}();
+    </script>
+  </head>
+  <body>
+    <h1>Hightouch Events test page</h1>
+    <p>Use these buttons to send sample events. Check the Event Source debugger after each call.</p>
+
+    <button type="button" id="identify">Identify</button>
+    <button type="button" id="track">Track</button>
+    <button type="button" id="page">Page</button>
+    <button type="button" id="group">Group</button>
+    <button type="button" id="reset">Reset</button>
+
+    <script>
+      // identify: call after login / signup with a stable userId (not email).
+      // Email and name belong in traits.
+      document.getElementById("identify").onclick = function () {
+        htevents.identify("user_123", {
+          email: "jane@example.com",
+          name: "Jane Doe",
+          plan: "pro",
+        });
+      };
+
+      // track: call when the user performs an action.
+      document.getElementById("track").onclick = function () {
+        htevents.track("Product Added", {
+          product_id: "sku_abc",
+          product_name: "Blue sneakers",
+          price: 79.99,
+          quantity: 1,
+        });
+      };
+
+      // page: the snippet already fires page() on load.
+      // Call again on SPA route changes.
+      document.getElementById("page").onclick = function () {
+        htevents.page("Shop", "Product detail", {
+          path: "/products/blue-sneakers",
+        });
+      };
+
+      // group: associate the current user with an account / org.
+      // There is no regroup method. Call group() again with a new groupId to change accounts.
+      document.getElementById("group").onclick = function () {
+        htevents.group("org_456", {
+          company_name: "Acme Inc",
+          industry: "Retail",
+          employees: 250,
+        });
+      };
+
+      // reset: call on logout. Clears userId, groupId, traits, and anonymousId.
+      document.getElementById("reset").onclick = function () {
+        htevents.reset();
+      };
+    </script>
+  </body>
+</html>
