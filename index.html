@@ -34,7 +34,7 @@
 
       // track: call when the user performs an action.
       document.getElementById("track").onclick = function () {
-        htevents.track("Product Added", {
+        window.htevents.track("Product Added", {
           product_id: "sku_abc",
           product_name: "Blue sneakers",
           price: 79.99,
