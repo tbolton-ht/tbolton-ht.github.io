@@ -20,7 +20,6 @@
     <button type="button" id="page">Page</button>
     <button type="button" id="group">Group</button>
     <button type="button" id="reset">Reset</button>
-    <button type="button" id="trackcontract">Track-Contract</button>
 
     <script>
       // identify: call after login / signup with a stable userId (not email).
@@ -37,16 +36,7 @@
       document.getElementById("track").onclick = function () {
         htevents.track("Product Added", {
           product_id: "sku_abc",
-          product_name: "Blue sneakers",
-          price: 79.99,
-          quantity: 1,
-        });
-      };
-
-      // track: call when the user performs an action. test for a contract looking for missing product_name
-      document.getElementById("trackcontract").onclick = function () {
-        htevents.track("Product Added", {
-          product_id: "sku_abc",
+          //product_name: "Blue sneakers",
           price: 79.99,
           quantity: 1,
         });
