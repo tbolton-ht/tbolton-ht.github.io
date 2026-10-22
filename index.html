@@ -16,6 +16,7 @@
     <p>Use these buttons to send sample events. Check the Event Source debugger after each call.</p>
 
     <button type="button" id="identify">Identify</button>
+    <button type="button" id="identify-free">Identify Free Plan</button>
     <button type="button" id="track">Track</button>
     <button type="button" id="page">Page</button>
     <button type="button" id="group">Group</button>
@@ -29,6 +30,16 @@
           email: "jane@example.com",
           name: "Jane Doe",
           plan: "pro",
+        });
+      };
+
+      // identify: call after login / signup with a stable userId (not email).
+      // Email and name belong in traits.
+      document.getElementById("identify-free").onclick = function () {
+        htevents.identify("user_456", {
+          email: "jim@example.com",
+          name: "Jim Doe",
+          plan: "free",
         });
       };
 
